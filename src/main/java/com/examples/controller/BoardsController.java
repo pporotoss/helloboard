@@ -11,29 +11,35 @@ import org.springframework.web.bind.annotation.*;
 public class BoardsController {
     
     @GetMapping
-    public String boards(@ModelAttribute Pagenation pagenation) {
+    public String boards(Pagenation pagenation) {
         
         
         return "boards_list";
     }
     
     @GetMapping("/{boardId}")
-    public String boadRead(@PathVariable long boardId, @ModelAttribute Pagenation pagenation) {
+    public String boadRead(@PathVariable long boardId, Pagenation pagenation) {
         
         
         return "boards_read";
     }
     
     @GetMapping("writeform")
-    public String writeForm() {
+    public String writeForm(Pagenation pagenation) {
         
         return "boards_writeform";
     }
     
     @PostMapping
-    public String write(Content content) {
+    public String write(Content content, Pagenation pagenation) {
         
         return "redirect/boards";
+    }
+    
+    @GetMapping("deleteform/{boardId}")
+    public String deleteForm(@PathVariable long boardId, Pagenation pagenation) {
+        
+        return "boards_deleteform";
     }
     
 }
