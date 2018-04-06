@@ -3,8 +3,9 @@ package com.examples.controller;
 import com.examples.dto.Content;
 import com.examples.dto.Pagenation;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Comparator;
 
 @Controller
 @RequestMapping("boards")
@@ -12,13 +13,13 @@ public class BoardsController {
     
     @GetMapping
     public String boards(Pagenation pagenation) {
-        
+        System.out.println("list");
         
         return "boards_list";
     }
     
     @GetMapping("/{boardId}")
-    public String boadRead(@PathVariable long boardId, Pagenation pagenation) {
+    public String boardRead(@PathVariable long boardId, Pagenation pagenation) {
         
         
         return "boards_read";
@@ -31,9 +32,9 @@ public class BoardsController {
     }
     
     @PostMapping
-    public String write(Content content, Pagenation pagenation) {
-        
-        return "redirect/boards";
+    public String boardWrite(Content content, Pagenation pagenation) {
+        System.out.println("write");
+        return "redirect:/boards";
     }
     
     @GetMapping("deleteform/{boardId}")
@@ -42,4 +43,24 @@ public class BoardsController {
         return "boards_deleteform";
     }
     
+    @DeleteMapping
+    public String boardDelete(String password) {
+        
+        System.out.println("delete");
+        return "redirect:/boards";
+    }
+    
+    
+    @GetMapping("updateform/{boardId}")
+    public String updateForm(@PathVariable long boardId, Pagenation pagenation) {
+        
+        return "boards_updateform";
+    }
+    
+    @PutMapping
+    public String boardUpdate(Content content, Pagenation pagenation) {
+        
+        System.out.println("update!!");
+        return "redirect:/boards";
+    }
 }
